@@ -3,6 +3,7 @@
 		"archaeologist:archaeologist/origin_setup",
 		"archaeologist:archaeologist/fof_resource",
 		"archaeologist:archaeologist/ticking_particles",
+    "archaeologist:archaeologist/suspicious_particles",
 		"archaeologist:archaeologist/place_pot"
 	],
 	"icon": "minecraft:friend_pottery_sherd",
