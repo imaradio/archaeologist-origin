@@ -23,6 +23,10 @@
       {
         "type": "origins:execute_command",
         "command": "function archaeologist:archaeologist/scoreboard_setup with storage archaeologist:current_uuid"
+      },
+      {
+        "type": "origins:give",
+        "stack": { "item": "minecraft:brush" }
       }
     ]
   },

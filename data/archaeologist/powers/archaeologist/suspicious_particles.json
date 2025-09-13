@@ -1,0 +1,62 @@
+{
+  "type": "origins:multiple",
+  "hidden": true,
+
+  "sand": {
+    "type": "origins:action_over_time",
+    "entity_action": {
+      "type": "origins:and",
+      "actions": [
+        {
+          "type": "origins:execute_command",
+          "command": "execute store result storage archaeologist:current_uuid uuid int 1 run scoreboard players get @s archaeologistUUID"
+        },
+        {
+          "type": "origins:block_action_at",
+          "block_action": {
+            "type": "origins:area_of_effect",
+            "radius": 5,
+            "block_action": {
+              "type": "origins:execute_command",
+              "command": "function archaeologist:archaeologist/suspicious_sand_particles with storage archaeologist:current_uuid"
+            },
+            "block_condition": {
+              "type": "origins:block",
+              "block": "minecraft:suspicious_sand"
+            }
+          }
+        }
+      ]
+    },
+    "interval": 10
+  },
+
+  "gravel": {
+    "type": "origins:action_over_time",
+    "entity_action": {
+      "type": "origins:and",
+      "actions": [
+        {
+          "type": "origins:execute_command",
+          "command": "execute store result storage archaeologist:current_uuid uuid int 1 run scoreboard players get @s archaeologistUUID"
+        },
+        {
+          "type": "origins:block_action_at",
+          "block_action": {
+            "type": "origins:area_of_effect",
+            "radius": 5,
+            "block_action": {
+              "type": "origins:execute_command",
+              "command": "function archaeologist:archaeologist/suspicious_gravel_particles with storage archaeologist:current_uuid"
+            },
+            "block_condition": {
+              "type": "origins:block",
+              "block": "minecraft:suspicious_gravel"
+            }
+          }
+        }
+      ]
+    },
+    "interval": 10
+  }
+}
