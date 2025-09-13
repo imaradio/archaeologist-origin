@@ -1,0 +1,17 @@
+{
+  "type": "origins:action_over_time",
+  "entity_action": {
+    "type": "origins:and",
+    "actions": [
+      {
+        "type": "origins:execute_command",
+        "command": "execute store result storage archaeologist:current_uuid uuid int 1 run scoreboard players get @s archaeologistUUID"
+      },
+      {
+        "type": "origins:execute_command",
+        "command": "function archaeologist:pot/cosmetic/indicator/friend with storage archaeologist:current_uuid"
+      }
+    ]
+  },
+  "interval": 5
+}

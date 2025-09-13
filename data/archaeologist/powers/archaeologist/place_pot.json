@@ -1,0 +1,387 @@
+{
+  "type": "origins:multiple",
+  "hidden": true,
+
+  "disable_spawn": {
+    "type": "origins:resource",
+    "min": 0,
+    "max": 1,
+    "hud_render": {
+      "bar_index": 3,
+      "condition": {
+        "type": "origins:resource",
+        "resource": "*:*_disable_spawn",
+        "comparison": "==",
+        "compare_to": 1
+      }
+    }
+  },
+
+  "toggle_disable_spawn": {
+    "type": "origins:active_self",
+    "entity_action": {
+      "type": "origins:if_else",
+      "condition": {
+        "type": "origins:resource",
+        "resource": "*:*_disable_spawn",
+        "comparison": "==",
+        "compare_to": 0
+      },
+      "if_action": {
+        "type": "origins:change_resource",
+        "resource": "*:*_disable_spawn",
+        "change": 1
+      },
+      "else_action": {
+        "type": "origins:change_resource",
+        "resource": "*:*_disable_spawn",
+        "change": -1
+      }
+    },
+    "key": {
+      "key": "key.origins.secondary_active"
+    }
+  },
+
+  "north": {
+    "type": "origins:action_on_block_use",
+    "entity_action": {
+      "type": "origins:and",
+      "actions": [
+        {
+          "type": "origins:execute_command",
+          "command": "execute as @e[tag=ArchaeologistPot,limit=1] run power grant @s archaeologist:pot/setup_and_tick"
+        },
+        {
+          "type": "origins:execute_command",
+          "command": "execute as @e[tag=ArchaeologistPot,limit=1] run power grant @s archaeologist:pot/fof"
+        },
+        {
+          "type": "origins:execute_command",
+          "command": "execute store result storage archaeologist:current_uuid uuid int 1 run scoreboard players get @s archaeologistUUID"
+        },
+        {
+          "type": "origins:execute_command",
+          "command": "function archaeologist:pot/give_armor_stand_uuid with storage archaeologist:current_uuid"
+        },
+        {
+          "type": "origins:execute_command",
+          "command": "execute store result score %potbool global run resource get @s archaeologist:archaeologist/fof_resource_friend"
+        },
+        {
+          "type": "origins:execute_command",
+          "command": "execute if score %potbool global matches 1 run resource set @e[tag=ArchaeologistPot,limit=1] archaeologist:pot/fof 1"
+        },
+        {
+          "type": "origins:execute_command",
+          "command": "tag @e[tag=ArchaeologistPot] remove ArchaeologistPot"
+        }
+      ]
+    },
+    "block_action": {
+      "type": "origins:offset",
+      "action": {
+        "type": "origins:execute_command",
+        "command": "summon minecraft:armor_stand ~ ~-0.5 ~ {NoGravity:1b, Small:1b, Invisible:1b, Marker:1b, Tags:['ArchaeologistPot']}"
+      },
+      "z": -1
+    },
+    "item_condition": {
+      "type": "origins:ingredient",
+      "ingredient": { "item": "minecraft:decorated_pot" }
+    },
+    "condition": {
+      "type": "origins:resource",
+      "resource": "*:*_disable_spawn",
+      "comparison": "==",
+      "compare_to": 0
+    },
+    "directions": [ "north" ],
+    "action_result": "pass"
+  },
+
+  "east": {
+    "type": "origins:action_on_block_use",
+    "entity_action": {
+      "type": "origins:and",
+      "actions": [
+        {
+          "type": "origins:execute_command",
+          "command": "execute as @e[tag=ArchaeologistPot,limit=1] run power grant @s archaeologist:pot/setup_and_tick"
+        },
+        {
+          "type": "origins:execute_command",
+          "command": "execute as @e[tag=ArchaeologistPot,limit=1] run power grant @s archaeologist:pot/fof"
+        },
+        {
+          "type": "origins:execute_command",
+          "command": "execute store result storage archaeologist:current_uuid uuid int 1 run scoreboard players get @s archaeologistUUID"
+        },
+        {
+          "type": "origins:execute_command",
+          "command": "function archaeologist:pot/give_armor_stand_uuid with storage archaeologist:current_uuid"
+        },
+        {
+          "type": "origins:execute_command",
+          "command": "execute store result score %potbool global run resource get @s archaeologist:archaeologist/fof_resource_friend"
+        },
+        {
+          "type": "origins:execute_command",
+          "command": "execute if score %potbool global matches 1 run resource set @e[tag=ArchaeologistPot,limit=1] archaeologist:pot/fof 1"
+        },
+        {
+          "type": "origins:execute_command",
+          "command": "tag @e[tag=ArchaeologistPot] remove ArchaeologistPot"
+        }
+      ]
+    },
+    "block_action": {
+      "type": "origins:offset",
+      "action": {
+        "type": "origins:execute_command",
+        "command": "summon minecraft:armor_stand ~ ~-0.5 ~ {NoGravity:1b, Small:1b, Invisible:1b, Marker:1b, Tags:['ArchaeologistPot']}"
+      },
+      "x": 1
+    },
+    "item_condition": {
+      "type": "origins:ingredient",
+      "ingredient": { "item": "minecraft:decorated_pot" }
+    },
+    "condition": {
+      "type": "origins:resource",
+      "resource": "*:*_disable_spawn",
+      "comparison": "==",
+      "compare_to": 0
+    },
+    "directions": [ "east" ],
+    "action_result": "pass"
+  },
+
+  "west": {
+    "type": "origins:action_on_block_use",
+    "entity_action": {
+      "type": "origins:and",
+      "actions": [
+        {
+          "type": "origins:execute_command",
+          "command": "execute as @e[tag=ArchaeologistPot,limit=1] run power grant @s archaeologist:pot/setup_and_tick"
+        },
+        {
+          "type": "origins:execute_command",
+          "command": "execute as @e[tag=ArchaeologistPot,limit=1] run power grant @s archaeologist:pot/fof"
+        },
+        {
+          "type": "origins:execute_command",
+          "command": "execute store result storage archaeologist:current_uuid uuid int 1 run scoreboard players get @s archaeologistUUID"
+        },
+        {
+          "type": "origins:execute_command",
+          "command": "function archaeologist:pot/give_armor_stand_uuid with storage archaeologist:current_uuid"
+        },
+        {
+          "type": "origins:execute_command",
+          "command": "execute store result score %potbool global run resource get @s archaeologist:archaeologist/fof_resource_friend"
+        },
+        {
+          "type": "origins:execute_command",
+          "command": "execute if score %potbool global matches 1 run resource set @e[tag=ArchaeologistPot,limit=1] archaeologist:pot/fof 1"
+        },
+        {
+          "type": "origins:execute_command",
+          "command": "tag @e[tag=ArchaeologistPot] remove ArchaeologistPot"
+        }
+      ]
+    },
+    "block_action": {
+      "type": "origins:offset",
+      "action": {
+        "type": "origins:execute_command",
+        "command": "summon minecraft:armor_stand ~ ~-0.5 ~ {NoGravity:1b, Small:1b, Invisible:1b, Marker:1b, Tags:['ArchaeologistPot']}"
+      },
+      "x": -1
+    },
+    "item_condition": {
+      "type": "origins:ingredient",
+      "ingredient": { "item": "minecraft:decorated_pot" }
+    },
+    "condition": {
+      "type": "origins:resource",
+      "resource": "*:*_disable_spawn",
+      "comparison": "==",
+      "compare_to": 0
+    },
+    "directions": [ "west" ],
+    "action_result": "pass"
+  },
+
+  "south": {
+    "type": "origins:action_on_block_use",
+    "entity_action": {
+      "type": "origins:and",
+      "actions": [
+        {
+          "type": "origins:execute_command",
+          "command": "execute as @e[tag=ArchaeologistPot,limit=1] run power grant @s archaeologist:pot/setup_and_tick"
+        },
+        {
+          "type": "origins:execute_command",
+          "command": "execute as @e[tag=ArchaeologistPot,limit=1] run power grant @s archaeologist:pot/fof"
+        },
+        {
+          "type": "origins:execute_command",
+          "command": "execute store result storage archaeologist:current_uuid uuid int 1 run scoreboard players get @s archaeologistUUID"
+        },
+        {
+          "type": "origins:execute_command",
+          "command": "function archaeologist:pot/give_armor_stand_uuid with storage archaeologist:current_uuid"
+        },
+        {
+          "type": "origins:execute_command",
+          "command": "execute store result score %potbool global run resource get @s archaeologist:archaeologist/fof_resource_friend"
+        },
+        {
+          "type": "origins:execute_command",
+          "command": "execute if score %potbool global matches 1 run resource set @e[tag=ArchaeologistPot,limit=1] archaeologist:pot/fof 1"
+        },
+        {
+          "type": "origins:execute_command",
+          "command": "tag @e[tag=ArchaeologistPot] remove ArchaeologistPot"
+        }
+      ]
+    },
+    "block_action": {
+      "type": "origins:offset",
+      "action": {
+        "type": "origins:execute_command",
+        "command": "summon minecraft:armor_stand ~ ~-0.5 ~ {NoGravity:1b, Small:1b, Invisible:1b, Marker:1b, Tags:['ArchaeologistPot']}"
+      },
+      "z": 1
+    },
+    "item_condition": {
+      "type": "origins:ingredient",
+      "ingredient": { "item": "minecraft:decorated_pot" }
+    },
+    "condition": {
+      "type": "origins:resource",
+      "resource": "*:*_disable_spawn",
+      "comparison": "==",
+      "compare_to": 0
+    },
+    "directions": [ "south" ],
+    "action_result": "pass"
+  },
+
+  "up": {
+    "type": "origins:action_on_block_use",
+    "entity_action": {
+      "type": "origins:and",
+      "actions": [
+        {
+          "type": "origins:execute_command",
+          "command": "execute as @e[tag=ArchaeologistPot,limit=1] run power grant @s archaeologist:pot/setup_and_tick"
+        },
+        {
+          "type": "origins:execute_command",
+          "command": "execute as @e[tag=ArchaeologistPot,limit=1] run power grant @s archaeologist:pot/fof"
+        },
+        {
+          "type": "origins:execute_command",
+          "command": "execute store result storage archaeologist:current_uuid uuid int 1 run scoreboard players get @s archaeologistUUID"
+        },
+        {
+          "type": "origins:execute_command",
+          "command": "function archaeologist:pot/give_armor_stand_uuid with storage archaeologist:current_uuid"
+        },
+        {
+          "type": "origins:execute_command",
+          "command": "execute store result score %potbool global run resource get @s archaeologist:archaeologist/fof_resource_friend"
+        },
+        {
+          "type": "origins:execute_command",
+          "command": "execute if score %potbool global matches 1 run resource set @e[tag=ArchaeologistPot,limit=1] archaeologist:pot/fof 1"
+        },
+        {
+          "type": "origins:execute_command",
+          "command": "tag @e[tag=ArchaeologistPot] remove ArchaeologistPot"
+        }
+      ]
+    },
+    "block_action": {
+      "type": "origins:offset",
+      "action": {
+        "type": "origins:execute_command",
+        "command": "summon minecraft:armor_stand ~ ~-0.5 ~ {NoGravity:1b, Small:1b, Invisible:1b, Marker:1b, Tags:['ArchaeologistPot']}"
+      },
+      "y": 1
+    },
+    "item_condition": {
+      "type": "origins:ingredient",
+      "ingredient": { "item": "minecraft:decorated_pot" }
+    },
+    "condition": {
+      "type": "origins:resource",
+      "resource": "*:*_disable_spawn",
+      "comparison": "==",
+      "compare_to": 0
+    },
+    "directions": [ "up" ],
+    "action_result": "pass"
+  },
+
+  "down": {
+    "type": "origins:action_on_block_use",
+    "entity_action": {
+      "type": "origins:and",
+      "actions": [
+        {
+          "type": "origins:execute_command",
+          "command": "execute as @e[tag=ArchaeologistPot,limit=1] run power grant @s archaeologist:pot/setup_and_tick"
+        },
+        {
+          "type": "origins:execute_command",
+          "command": "execute as @e[tag=ArchaeologistPot,limit=1] run power grant @s archaeologist:pot/fof"
+        },
+        {
+          "type": "origins:execute_command",
+          "command": "execute store result storage archaeologist:current_uuid uuid int 1 run scoreboard players get @s archaeologistUUID"
+        },
+        {
+          "type": "origins:execute_command",
+          "command": "function archaeologist:pot/give_armor_stand_uuid with storage archaeologist:current_uuid"
+        },
+        {
+          "type": "origins:execute_command",
+          "command": "execute store result score %potbool global run resource get @s archaeologist:archaeologist/fof_resource_friend"
+        },
+        {
+          "type": "origins:execute_command",
+          "command": "execute if score %potbool global matches 1 run resource set @e[tag=ArchaeologistPot,limit=1] archaeologist:pot/fof 1"
+        },
+        {
+          "type": "origins:execute_command",
+          "command": "tag @e[tag=ArchaeologistPot] remove ArchaeologistPot"
+        }
+      ]
+    },
+    "block_action": {
+      "type": "origins:offset",
+      "action": {
+        "type": "origins:execute_command",
+        "command": "summon minecraft:armor_stand ~ ~-0.5 ~ {NoGravity:1b, Small:1b, Invisible:1b, Marker:1b, Tags:['ArchaeologistPot']}"
+      },
+      "y": -1
+    },
+    "item_condition": {
+      "type": "origins:ingredient",
+      "ingredient": { "item": "minecraft:decorated_pot" }
+    },
+    "condition": {
+      "type": "origins:resource",
+      "resource": "*:*_disable_spawn",
+      "comparison": "==",
+      "compare_to": 0
+    },
+    "directions": [ "down" ],
+    "action_result": "pass"
+  }
+}

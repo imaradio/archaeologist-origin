@@ -1,0 +1,156 @@
+{
+  "type": "origins:multiple",
+  "hidden": true,
+
+  "friend": {
+    "type": "origins:resource",
+    "min": 0,
+    "max": 1,
+    "hud_render": {
+      "sprite_location": "origins:textures/gui/community/spiderkolo/resource_bar_01.png",
+      "bar_index": 14,
+      "condition": {
+        "type": "origins:resource",
+        "resource": "*:*_friend",
+        "comparison": "==",
+        "compare_to": 1
+      }
+    },
+    "start_value": 1
+  },
+
+  "foe": {
+    "type": "origins:resource",
+    "min": 0,
+    "max": 1,
+    "hud_render": {
+      "sprite_location": "origins:textures/gui/community/spiderkolo/resource_bar_01.png",
+      "bar_index": 23,
+      "condition": {
+        "type": "origins:resource",
+        "resource": "*:*_foe",
+        "comparison": "==",
+        "compare_to": 1
+      }
+    }
+  },
+
+  "flip_bools": {
+    "type": "origins:active_self",
+    "entity_action": {
+      "type": "origins:if_else",
+      "condition": {
+        "type": "origins:resource",
+        "resource": "*:*_friend",
+        "comparison": "==",
+        "compare_to": 1
+      },
+      "if_action": {
+        "type": "origins:and",
+        "actions": [
+          {
+            "type": "origins:change_resource",
+            "resource": "*:*_friend",
+            "change": -1
+          },
+          {
+            "type": "origins:change_resource",
+            "resource": "*:*_foe",
+            "change": 1
+          }
+        ]
+      },
+      "else_action": {
+        "type": "origins:and",
+        "actions": [
+          {
+            "type": "origins:change_resource",
+            "resource": "*:*_friend",
+            "change": 1
+          },
+          {
+            "type": "origins:change_resource",
+            "resource": "*:*_foe",
+            "change": -1
+          }
+        ]
+      }
+    }
+  },
+
+  "add_entity_to_list": {
+    "type": "origins:action_on_entity_use",
+    "bientity_action": {
+      "type": "origins:and",
+      "actions": [
+        {
+          "type": "origins:actor_action",
+          "action": {
+            "type": "origins:execute_command",
+            "command": "execute store result storage archaeologist:current_uuid uuid int 1 run scoreboard players get @s archaeologistUUID"
+          }
+        },
+        {
+          "type": "origins:if_else",
+          "condition": {
+            "type": "origins:actor_condition",
+            "condition": {
+              "type": "origins:resource",
+              "resource": "*:*_friend",
+              "comparison": "==",
+              "compare_to": 1
+            }
+          },
+          "if_action": {
+            "type": "origins:target_action",
+            "action": {
+              "type": "origins:execute_command",
+              "command": "function archaeologist:archaeologist/status/add_to_friends with storage archaeologist:current_uuid"
+            }
+          },
+          "else_action": {
+            "type": "origins:target_action",
+            "action": {
+              "type": "origins:execute_command",
+              "command": "function archaeologist:archaeologist/status/add_to_foes with storage archaeologist:current_uuid"
+            }
+          }
+        }
+      ]
+    },
+    "item_condition": {
+      "type": "origins:ingredient",
+      "ingredient": { "item": "minecraft:brush" },
+      "inverted": true
+    },
+    "condition": { "type": "origins:sneaking" }
+  },
+
+  "remove_from_all": {
+    "type": "origins:action_on_entity_use",
+    "bientity_action": {
+      "type": "origins:and",
+      "actions": [
+        {
+          "type": "origins:actor_action",
+          "action": {
+            "type": "origins:execute_command",
+            "command": "execute store result storage archaeologist:current_uuid uuid int 1 run scoreboard players get @s archaeologistUUID"
+          }
+        },
+        {
+          "type": "origins:target_action",
+          "action": {
+            "type": "origins:execute_command",
+            "command": "function archaeologist:archaeologist/status/remove_from_all with storage archaeologist:current_uuid"
+          }
+        }
+      ]
+    },
+    "item_condition": {
+      "type": "origins:ingredient",
+      "ingredient": { "item": "minecraft:brush" }
+    },
+    "condition": { "type": "origins:sneaking" }
+  }
+}

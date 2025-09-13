@@ -1,0 +1,66 @@
+{
+  "type": "origins:multiple",
+
+  "amount_of_this_sherd": {
+    "type": "origins:resource",
+    "min": 0,
+    "max": 4
+  },
+
+  "on_add": {
+    "type": "origins:action_on_callback",
+    "entity_action_added": {
+      "type": "origins:and",
+      "actions": [
+        {
+          "type": "origins:execute_command",
+          "command": "data modify storage archaeologist:temp temp set value 'minecraft:angler_pottery_sherd'"
+        },
+        {
+          "type": "origins:execute_command",
+          "command": "execute store success score %bool global run data modify storage archaeologist:temp temp set from block ~ ~ ~ sherds.[0]"
+        },
+        {
+          "type": "origins:execute_command",
+          "command": "execute if score %bool global matches 0 run resource change @s archaeologist:pot/sherd/angler_amount_of_this_sherd 1"
+        },
+        {
+          "type": "origins:execute_command",
+          "command": "data modify storage archaeologist:temp temp set value 'minecraft:angler_pottery_sherd'"
+        },
+        {
+          "type": "origins:execute_command",
+          "command": "execute store success score %bool global run data modify storage archaeologist:temp temp set from block ~ ~ ~ sherds.[1]"
+        },
+        {
+          "type": "origins:execute_command",
+          "command": "execute if score %bool global matches 0 run resource change @s archaeologist:pot/sherd/angler_amount_of_this_sherd 1"
+        },
+        {
+          "type": "origins:execute_command",
+          "command": "data modify storage archaeologist:temp temp set value 'minecraft:angler_pottery_sherd'"
+        },
+        {
+          "type": "origins:execute_command",
+          "command": "execute store success score %bool global run data modify storage archaeologist:temp temp set from block ~ ~ ~ sherds.[2]"
+        },
+        {
+          "type": "origins:execute_command",
+          "command": "execute if score %bool global matches 0 run resource change @s archaeologist:pot/sherd/angler_amount_of_this_sherd 1"
+        },
+        {
+          "type": "origins:execute_command",
+          "command": "data modify storage archaeologist:temp temp set value 'minecraft:angler_pottery_sherd'"
+        },
+        {
+          "type": "origins:execute_command",
+          "command": "execute store success score %bool global run data modify storage archaeologist:temp temp set from block ~ ~ ~ sherds.[3]"
+        },
+        {
+          "type": "origins:execute_command",
+          "command": "execute if score %bool global matches 0 run resource change @s archaeologist:pot/sherd/angler_amount_of_this_sherd 1"
+        }
+      ]
+    }
+  }
+}

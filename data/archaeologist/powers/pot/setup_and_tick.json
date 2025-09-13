@@ -1,0 +1,103 @@
+{
+  "type": "origins:multiple",
+
+  "setup": {
+    "type": "origins:action_on_callback",
+    "entity_action_added": {
+      "type": "origins:delay",
+      "ticks": 1,
+      "action": {
+        "type": "origins:and",
+        "actions": [
+          {
+            "type": "origins:area_of_effect",
+            "radius": 0.5,
+            "bientity_action": {
+              "type": "origins:actor_action",
+              "action": {
+                "type": "origins:execute_command",
+                "command": "kill @s"
+              }
+            },
+            "bientity_condition": {
+              "type": "origins:target_condition",
+              "condition": {
+                "type": "origins:exists"
+              }
+            }
+          },
+          {
+            "type": "origins:if_else",
+            "condition": {
+              "type": "origins:resource",
+              "resource": "archaeologist:pot/fof",
+              "comparison": "==",
+              "compare_to": 0
+            },
+            "if_action": {
+              "type": "origins:grant_power",
+              "power": "archaeologist:pot/cosmetic/indicator/foe",
+              "source": "archaeologist:pot/setup_and_tick"
+            },
+            "else_action": {
+              "type": "origins:grant_power",
+              "power": "archaeologist:pot/cosmetic/indicator/friend",
+              "source": "archaeologist:pot/setup_and_tick"
+            }
+          },
+          {
+            "type": "origins:if_else",
+            "condition": {
+              "type": "origins:in_block",
+              "block_condition": {
+                "type": "origins:nbt",
+                "nbt": { "sherds": [
+                    "minecraft:angler_pottery_sherd"
+                ] }
+              }
+            },
+            "if_action": {
+              "type": "origins:grant_power",
+              "power": "archaeologist:pot/sherd/angler",
+              "source": "archaeologist:pot/setup_and_tick"
+            }
+          },
+          {
+            "type": "origins:if_else",
+            "condition": {
+              "type": "origins:in_block",
+              "block_condition": {
+                "type": "origins:nbt",
+                "nbt": { "sherds": [
+                    "minecraft:snort_pottery_sherd"
+                ] }
+              }
+            },
+            "if_action": {
+              "type": "origins:grant_power",
+              "power": "archaeologist:pot/sherd/snort",
+              "source": "archaeologist:pot/setup_and_tick"
+            }
+          }
+        ]
+      }
+    }
+  },
+
+  "tick": {
+    "type": "origins:action_over_time",
+    "entity_action": {
+      "type": "origins:execute_command",
+      "command": "kill @s"
+    },
+    "interval": 1,
+    "condition": {
+      "type": "origins:in_block",
+      "block_condition": {
+        "type": "origins:block",
+        "block": "minecraft:decorated_pot"
+      },
+      "inverted": true
+    }
+  }
+}

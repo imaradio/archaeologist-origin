@@ -1,0 +1,46 @@
+{
+  "type": "origins:action_on_callback",
+  "hidden": true,
+  "entity_action_chosen": {
+    "type": "origins:and",
+    "actions": [
+      {
+        "type": "origins:execute_command",
+        "command": "scoreboard objectives add archaeologistUUID dummy"
+      },
+      {
+        "type": "origins:execute_command",
+        "command": "scoreboard objectives add global dummy"
+      },
+      {
+        "type": "origins:execute_command",
+        "command": "scoreboard players add #archaeologistUUIDCounter archaeologistUUID 1"
+      },
+      {
+        "type": "origins:execute_command",
+        "command": "execute store result storage archaeologist:current_uuid uuid int 1 unless score @s archaeologistUUID matches 1.. run scoreboard players operation @s archaeologistUUID = #archaeologistUUIDCounter archaeologistUUID"
+      },
+      {
+        "type": "origins:execute_command",
+        "command": "function archaeologist:archaeologist/scoreboard_setup with storage archaeologist:current_uuid"
+      }
+    ]
+  },
+  "entity_action_lost": {
+    "type": "origins:and",
+    "actions": [
+      {
+        "type": "origins:execute_command",
+        "command": "execute store result storage archaeologist:cleanup_uuid uuid int 1 run scoreboard players get @s archaeologistUUID"
+      },
+      {
+        "type": "origins:execute_command",
+        "command": "function archaeologist:archaeologist/scoreboard_cleanup with storage archaeologist:cleanup_uuid"
+      },
+      {
+        "type": "origins:execute_command",
+        "command": "scoreboard players set @s archaeologistUUID 0"
+      }
+    ]
+  }
+}
