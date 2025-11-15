@@ -69,13 +69,13 @@
               "block_condition": {
                 "type": "origins:nbt",
                 "nbt": { "sherds": [
-                    "minecraft:snort_pottery_sherd"
+                    "minecraft:brick"
                 ] }
               }
             },
             "if_action": {
               "type": "origins:grant_power",
-              "power": "archaeologist:pot/sherd/snort",
+              "power": "archaeologist:pot/sherd/brick",
               "source": "archaeologist:pot/setup_and_tick"
             }
           }
